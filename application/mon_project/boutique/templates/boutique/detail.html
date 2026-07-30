@@ -1,0 +1,20 @@
+{% extends "boutique/base.html" %}
+{% block titre %}{{ produit.nom }}{% endblock %}
+{% block contenu %}
+<a href="{% url 'liste_produits' %}" class="btn btn-secondary mb-3">Retour à la liste</a>
+<div class="card col-md-5 mb-4">
+    {% if produit.image %}
+    <img src="{{ produit.image.url }}" class="card-img-top" alt="{{ produit.nom }}">
+    {% endif %}
+    <div class="card-body">
+        <h1 class="card-title">{{ produit.nom }}</h1>
+        <p class="card-text">{{ produit.description }}</p>
+        <div class="d-flex gap-4 mb-3">
+            <p class="mb-0"><strong>Prix :</strong> {{ produit.prix }} €</p>
+            <p class="mb-0"><strong>Stock :</strong> {{ produit.stock }} unités</p>
+        </div>
+        <a href="{% url 'modifier_produit' produit.id %}" class="btn btn-warning">Modifier</a>
+        <a href="{% url 'supprimer_produit' produit.id %}" class="btn btn-danger">Supprimer</a>
+    </div>
+</div>
+{% endblock %}

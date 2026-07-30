@@ -1,0 +1,26 @@
+{% extends "boutique/base.html" %}
+{% block titre %}Liste des produits{% endblock %}
+{% block contenu %}
+<h1 class="mb-4">Nos produits</h1>
+<a href="{% url 'ajouter_produit' %}" class="btn btn-success mb-3">Ajouter un produit</a>
+<div class="row">
+    {% for produit in produits %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            {% if produit.image %}
+            <img src="{{ produit.image.url }}" class="card-img-top" alt="{{ produit.nom }}" style="height: 200px; object-fit: cover;">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ produit.nom }}</h5>
+                <p class="card-text text-primary fw-bold mb-1 ">{{ produit.prix }} €</p>
+                <p class="card-title">{{ produit.description }}</hp>
+
+                </div>
+                <a href="{% url 'detail_produit' produit.id %}" class="btn btn-primary">Voir le détail</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>Aucun produit disponible pour le moment.</p>
+    {% endfor %}
+</div>
+{% endblock %}
